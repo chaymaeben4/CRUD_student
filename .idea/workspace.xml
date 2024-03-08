@@ -9,9 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8d9b622-21a8-4310-a955-f5995248ba88" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/managedBean/StudentBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/StudentBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/faces-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/faces-config.xml" afterDir="false" />
+    <list default="true" id="f8d9b622-21a8-4310-a955-f5995248ba88" name="Changes" comment="commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/students.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/students.xhtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,8 +186,16 @@
       <updated>1709844373068</updated>
       <workItem from="1709844374639" duration="8625000" />
       <workItem from="1709887538850" duration="3482000" />
-      <workItem from="1709894388718" duration="2334000" />
+      <workItem from="1709894388718" duration="4020000" />
     </task>
+    <task id="LOCAL-00001" summary="commit">
+      <created>1709896943269</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1709896943269</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,5 +203,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
 </project>

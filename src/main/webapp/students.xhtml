@@ -5,13 +5,16 @@
 
 <h:head>
     <h:outputStylesheet library="webjars" name="bootstrap/5.3.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </h:head>
+
 
 <h:body>
     <div class="container mt-3">
         <h2>Liste des étudiants</h2>
 
-        <h:dataTable value="#{studentBean.students}" var="student" styleClass="table">
+        <h:dataTable value="#{studentBean.students}" var="student" styleClass="table"
+        headerClass="table-dark " rowClasses="table-secondary , table-light">
             <h:column>
                 <f:facet name="header">ID</f:facet>
                 #{student.id}
@@ -31,8 +34,10 @@
             <h:column>
                 <f:facet name="header">Actions</f:facet>
                 <div class="btn-group" >
-                    <button type="button" class="btn btn-primary">Modifier</button>
-                    <button type="button" class="btn btn-danger">Supprimer</button>
+                    <button type="button" class="btn btn-primary"><i class="fas fa-edit"></i></button>
+                </div>
+                <div class="btn-group" >
+                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                 </div>
             </h:column>
         </h:dataTable>
