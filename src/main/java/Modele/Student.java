@@ -5,7 +5,6 @@ public class Student {
     private String nom;
     private String prenom;
     private String email;
-    private Boolean inEditMode;
 
     public Student(int id, String nom, String prenom, String email) {
         this.id = id;
@@ -46,11 +45,5 @@ public class Student {
         this.email = email;
     }
 
-    public Boolean getInEditMode() {
-        return inEditMode;
-    }
 
-    public void setInEditMode(Boolean inEditMode) {
-        this.inEditMode = inEditMode;
-    }
 }
