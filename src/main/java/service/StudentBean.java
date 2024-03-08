@@ -1,4 +1,4 @@
-package managedBean;
+package service;
 
 import java.util.List;
 
