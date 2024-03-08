@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <h:outputStylesheet library="webjars" name="bootstrap/5.3.3/css/bootstrap.min.css" />
+</h:head>
+
+<h:body>
+    <div class="container mt-3">
+        <h2>Liste des étudiants</h2>
+
+        <h:dataTable value="#{studentBean.students}" var="student" styleClass="table">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{student.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nom</f:facet>
+                #{student.nom}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Prénom</f:facet>
+                #{student.prenom}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Email</f:facet>
+                #{student.email}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Actions</f:facet>
+                <div class="btn-group" >
+                    <button type="button" class="btn btn-primary">Modifier</button>
+                    <button type="button" class="btn btn-danger">Supprimer</button>
+                </div>
+            </h:column>
+        </h:dataTable>
+
+        <div class="d-flex justify-content-end mt-3">
+            <button type="button" class="btn btn-success">Ajouter un étudiant</button>
+
+        </div>
+    </div>
+
+</h:body>
+
+</html>
