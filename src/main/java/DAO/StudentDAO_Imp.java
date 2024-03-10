@@ -3,10 +3,7 @@ package DAO;
 import Modele.Student;
 import util.DatabaseConfig;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,5 +24,41 @@ public class StudentDAO_Imp implements StudentDAO {
             E.printStackTrace();
         }
         return list;
+    }
+
+    @Override
+    public void update(Student student){
+        try(Connection connection=db.getConnection();
+            PreparedStatement preparedStatement=connection.prepareStatement("update student set nom = ?,prenom= ?, email =? where id = ?;")){
+            preparedStatement.setString(1,student.getNom());
+            preparedStatement.setString(2,student.getPrenom());
+            preparedStatement.setString(3,student.getEmail());
+            preparedStatement.setInt(4,student.getId());
+            preparedStatement.executeUpdate() ;
+        }
+        catch (SQLException E){
+            E.printStackTrace();
+        }
+    }
+
+    @Override
+    public Student selectbyId(int id){
+        Student student=null;
+        try(Connection connection=db.getConnection();
+            PreparedStatement preparedStatement=connection.prepareStatement("select id,nom,prenom,email from student where id =?")){
+            preparedStatement.setInt(1, id);
+            ResultSet rs=preparedStatement.executeQuery();
+            while (rs.next()){
+                student=new Student();
+                student.setId(rs.getInt("id"));
+                student.setNom(rs.getString("nom"));
+                student.setPrenom(rs.getString("prenom"));
+                student.setEmail(rs.getString("email"));
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return student;
     }
 }
