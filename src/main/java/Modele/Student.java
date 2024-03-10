@@ -5,13 +5,12 @@ public class Student {
     private String nom;
     private String prenom;
     private String email;
-<<<<<<< HEAD
-=======
+
     private Boolean editMode=false;
 
     public Student() {
     }
->>>>>>> chaymae1
+
 
     public Student(int id, String nom, String prenom, String email) {
         this.id = id;
@@ -20,8 +19,6 @@ public class Student {
         this.email = email;
     }
 
-    public Student() {
-    }
 
     public int getId() {
         return id;
@@ -55,7 +52,14 @@ public class Student {
         this.email = email;
     }
 
-<<<<<<< HEAD
+    public Boolean getEditMode() {
+        return editMode;
+    }
+
+    public void setEditMode(Boolean editMode) {
+        this.editMode = editMode;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -64,13 +68,6 @@ public class Student {
                 ", prenom='" + prenom + '\'' +
                 ", email='" + email + '\'' +
                 '}';
-=======
-    public Boolean getEditMode() {
-        return editMode;
-    }
 
-    public void setEditMode(Boolean editMode) {
-        this.editMode = editMode;
->>>>>>> chaymae1
     }
 }

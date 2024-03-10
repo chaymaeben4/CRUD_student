@@ -13,12 +13,10 @@ public class DatabaseConfig {
         try {
             //charger le pilote
             Class.forName("com.mysql.cj.jdbc.Driver");
-<<<<<<< HEAD
-            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/crud", "root", "87467942");
-            System.out.println("connected");
-=======
+
+//            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/crud", "root", "87467942");
+
             conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/crud", "root", "Chben97531@@");
->>>>>>> chaymae1
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             System.err.println("Erreur lors de la connexion à la base de données : " + e.getMessage());

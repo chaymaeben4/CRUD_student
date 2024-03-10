@@ -25,7 +25,7 @@ public class StudentDAO_Imp implements StudentDAO {
         }
         return list;
     }
-<<<<<<< HEAD
+
     public void saveStudent(Student student){
         try (Connection connection = db.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement( "INSERT INTO crud.student" + "  (nom, prenom, email) VALUES "
@@ -38,14 +38,17 @@ public class StudentDAO_Imp implements StudentDAO {
             e.printStackTrace();
         }
     }
-    public boolean deleteStudent(int id){
-        boolean statut=false;
-        try(Connection connection = db.getConnection();
-            PreparedStatement preparedStatement=connection.prepareStatement("delete from crud.student where id = ?;")){
-            preparedStatement.setInt(1,id);
-            statut=preparedStatement.executeUpdate() >0;
-=======
-
+    public boolean deleteStudent(int id) {
+        boolean statut = false;
+        try (Connection connection = db.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("delete from crud.student where id = ?;")) {
+            preparedStatement.setInt(1, id);
+            statut = preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return statut;
+    }
     @Override
     public void update(Student student){
         try(Connection connection=db.getConnection();
@@ -61,29 +64,4 @@ public class StudentDAO_Imp implements StudentDAO {
         }
     }
 
-    @Override
-    public Student selectbyId(int id){
-        Student student=null;
-        try(Connection connection=db.getConnection();
-            PreparedStatement preparedStatement=connection.prepareStatement("select id,nom,prenom,email from student where id =?")){
-            preparedStatement.setInt(1, id);
-            ResultSet rs=preparedStatement.executeQuery();
-            while (rs.next()){
-                student=new Student();
-                student.setId(rs.getInt("id"));
-                student.setNom(rs.getString("nom"));
-                student.setPrenom(rs.getString("prenom"));
-                student.setEmail(rs.getString("email"));
-            }
->>>>>>> chaymae1
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-<<<<<<< HEAD
-        return  statut;
-=======
-        return student;
->>>>>>> chaymae1
-    }
 }

@@ -6,25 +6,23 @@ import java.util.List;
 import DAO.StudentDAO;
 import DAO.StudentDAO_Imp;
 import Modele.Student;
-<<<<<<< HEAD
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.bean.ManagedBean;
 import jakarta.faces.bean.ViewScoped;
 import jakarta.faces.component.html.HtmlCommandButton;
 import jakarta.faces.component.html.HtmlDataTable;
 import jakarta.faces.component.html.HtmlInputText;
-=======
-import jakarta.annotation.ManagedBean;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 
->>>>>>> chaymae1
 
 @ManagedBean
 @ViewScoped
 public class StudentBean {
-<<<<<<< HEAD
+    private List<Student> students;
+    @Inject
+    private StudentDAO studentDAO;
+    private Student selectedStudent;
+
     private boolean showAddStudentForm;
     private int studentIdToDelete;
     private HtmlDataTable htmlDataTable;
@@ -45,6 +43,7 @@ public class StudentBean {
         this.inputNom=new HtmlInputText();
         this.inputPrenom=new HtmlInputText();
         this.inputEmail=new HtmlInputText();
+        this.students = studentDAO.selectAll();
     }
 
     public int getStudentIdToDelete() {
@@ -97,7 +96,6 @@ public class StudentBean {
         this.inputId = inputId;
     }
 
-    private StudentDAO studentDAO;
     private Student studentAdd;
 
     public Student getStudentAdd() {
@@ -114,17 +112,9 @@ public class StudentBean {
 
     public void setStudentAdd(Student studentAdd) {
         this.studentAdd = studentAdd;
-=======
-    private List<Student> students;
-    @Inject
-    private StudentDAO studentDAO;
-    private Student selectedStudent;
-
-    public StudentBean() {
-        this.studentDAO = new StudentDAO_Imp();
-        this.students = studentDAO.selectAll();
-
     }
+
+
 
     public void toggleEditMode(Student student) {
         student.setEditMode(!student.getEditMode());
@@ -143,21 +133,17 @@ public class StudentBean {
         } catch (Exception e) {
             e.printStackTrace();
         }
->>>>>>> chaymae1
+
     }
 
 
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> chaymae1
     public List<Student> getStudents() {
         return studentDAO.selectAll();
     }
 
-<<<<<<< HEAD
+
     public void saveStudent() {
         this.showAddStudentForm=false;
         studentDAO.saveStudent(studentAdd);
@@ -207,8 +193,8 @@ public class StudentBean {
 
 
 
-}
-=======
+
+
     public void setStudents(List<Student> students) {
         this.students = students;
     }
@@ -229,4 +215,4 @@ public class StudentBean {
         this.selectedStudent = selectedStudent;
     }
 }
->>>>>>> chaymae1
+
