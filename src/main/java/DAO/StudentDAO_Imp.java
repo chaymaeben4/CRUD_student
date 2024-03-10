@@ -3,10 +3,7 @@ package DAO;
 import Modele.Student;
 import util.DatabaseConfig;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +15,7 @@ public class StudentDAO_Imp implements StudentDAO {
         List<Student> list = new ArrayList<>();
         try (Connection conn = db.getConnection()) {
             Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM student");
+            ResultSet rs = statement.executeQuery("SELECT * FROM crud.student");
             while (rs.next()) {
                 Student s = new Student(rs.getInt("id"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"));
                 list.add(s);
@@ -27,5 +24,29 @@ public class StudentDAO_Imp implements StudentDAO {
             E.printStackTrace();
         }
         return list;
+    }
+    public void saveStudent(Student student){
+        try (Connection connection = db.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement( "INSERT INTO crud.student" + "  (nom, prenom, email) VALUES "
+                     + " (?, ?, ?);")) {
+            preparedStatement.setString(1, student.getNom());
+            preparedStatement.setString(2, student.getPrenom());
+            preparedStatement.setString(3, student.getEmail());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public boolean deleteStudent(int id){
+        boolean statut=false;
+        try(Connection connection = db.getConnection();
+            PreparedStatement preparedStatement=connection.prepareStatement("delete from crud.student where id = ?;")){
+            preparedStatement.setInt(1,id);
+            statut=preparedStatement.executeUpdate() >0;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return  statut;
     }
 }

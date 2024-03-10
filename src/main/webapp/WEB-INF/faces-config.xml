@@ -8,7 +8,7 @@
     <managed-bean>
         <managed-bean-name>studentBean</managed-bean-name>
         <managed-bean-class>service.StudentBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
+        <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 
 </faces-config>

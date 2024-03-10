@@ -12,42 +12,47 @@
 <h:body>
     <div class="container mt-3">
         <h2>Liste des étudiants</h2>
-
-        <h:dataTable value="#{studentBean.students}" var="student" styleClass="table"
+        <h:form>
+        <h:dataTable value="#{studentBean.visibleStudents}" var="student" styleClass="table"
         headerClass="table-dark " rowClasses="table-secondary , table-light">
             <h:column>
                 <f:facet name="header">ID</f:facet>
                 #{student.id}
+                <f:facet name="footer" > <h:inputText binding="#{studentBean.inputId}" value="#{studentBean.studentAdd.id}" rendered="#{studentBean.showAddStudentForm}"></h:inputText></f:facet>
             </h:column>
             <h:column>
                 <f:facet name="header">Nom</f:facet>
                 #{student.nom}
+                <f:facet name="footer"> <h:inputText binding="#{studentBean.inputNom}" value="#{studentBean.studentAdd.nom}" rendered="#{studentBean.showAddStudentForm}"></h:inputText></f:facet>
             </h:column>
             <h:column>
                 <f:facet name="header">Prénom</f:facet>
                 #{student.prenom}
+                <f:facet name="footer"> <h:inputText binding="#{studentBean.inputPrenom}" value="#{studentBean.studentAdd.prenom}" rendered="#{studentBean.showAddStudentForm}"></h:inputText></f:facet>
             </h:column>
             <h:column>
                 <f:facet name="header">Email</f:facet>
                 #{student.email}
+                <f:facet name="footer"> <h:inputText binding="#{studentBean.inputEmail}" value="#{studentBean.studentAdd.email}" rendered="#{studentBean.showAddStudentForm}"></h:inputText></f:facet>
             </h:column>
             <h:column>
                 <f:facet name="header">Actions</f:facet>
                 <div class="btn-group" >
                     <button type="button" class="btn btn-primary"><i class="fas fa-edit"></i></button>
                 </div>
-                <div class="btn-group" >
-                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                </div>
+                <h:commandButton action="#{studentBean.deleteStudent()}" styleClass="btn btn-danger" value="supprimer" >
+                    <f:setPropertyActionListener target="#{studentBean.studentIdToDelete}" value="#{student.id}" />
+
+                </h:commandButton>
+                <f:facet name="footer">
+                    <h:commandButton value="Save" action="#{studentBean.saveStudent()}" styleClass="btn btn-success" rendered="#{studentBean.showAddStudentForm}"> </h:commandButton>
+                </f:facet>
             </h:column>
         </h:dataTable>
-
-        <div class="d-flex justify-content-end mt-3">
-            <button type="button" class="btn btn-success">Ajouter un étudiant</button>
-
-        </div>
+            <h:commandButton value="Add Student" action="#{studentBean.addStudent()}" styleClass="btn btn-success" />
+            <h:commandButton value="previous" action="#{studentBean.previousPage()}"></h:commandButton>
+            <h:commandButton value="next" action="#{studentBean.nextPage()}"></h:commandButton>
+           </h:form>
     </div>
-
 </h:body>
-
 </html>
