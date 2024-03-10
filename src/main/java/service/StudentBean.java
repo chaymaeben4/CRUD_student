@@ -6,16 +6,25 @@ import java.util.List;
 import DAO.StudentDAO;
 import DAO.StudentDAO_Imp;
 import Modele.Student;
+<<<<<<< HEAD
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.bean.ManagedBean;
 import jakarta.faces.bean.ViewScoped;
 import jakarta.faces.component.html.HtmlCommandButton;
 import jakarta.faces.component.html.HtmlDataTable;
 import jakarta.faces.component.html.HtmlInputText;
+=======
+import jakarta.annotation.ManagedBean;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+
+>>>>>>> chaymae1
 
 @ManagedBean
 @ViewScoped
 public class StudentBean {
+<<<<<<< HEAD
     private boolean showAddStudentForm;
     private int studentIdToDelete;
     private HtmlDataTable htmlDataTable;
@@ -105,14 +114,50 @@ public class StudentBean {
 
     public void setStudentAdd(Student studentAdd) {
         this.studentAdd = studentAdd;
+=======
+    private List<Student> students;
+    @Inject
+    private StudentDAO studentDAO;
+    private Student selectedStudent;
+
+    public StudentBean() {
+        this.studentDAO = new StudentDAO_Imp();
+        this.students = studentDAO.selectAll();
+
+    }
+
+    public void toggleEditMode(Student student) {
+        student.setEditMode(!student.getEditMode());
+    }
+
+    public void saveChanges() {
+        try {
+            System.out.println("Saving changes for student: " + selectedStudent.getId());
+            System.out.println("Selected Student before update: " + selectedStudent);
+
+            studentDAO.update(selectedStudent);
+            toggleEditMode(selectedStudent);
+            students = studentDAO.selectAll();
+
+            System.out.println("Update successful for student: " +selectedStudent.getPrenom());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+>>>>>>> chaymae1
     }
 
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> chaymae1
     public List<Student> getStudents() {
         return studentDAO.selectAll();
     }
 
+<<<<<<< HEAD
     public void saveStudent() {
         this.showAddStudentForm=false;
         studentDAO.saveStudent(studentAdd);
@@ -163,3 +208,25 @@ public class StudentBean {
 
 
 }
+=======
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public StudentDAO getStudentDAO() {
+        return studentDAO;
+    }
+
+    public void setStudentDAO(StudentDAO studentDAO) {
+        this.studentDAO = studentDAO;
+    }
+
+    public Student getSelectedStudent() {
+        return selectedStudent;
+    }
+
+    public void setSelectedStudent(Student selectedStudent) {
+        this.selectedStudent = selectedStudent;
+    }
+}
+>>>>>>> chaymae1

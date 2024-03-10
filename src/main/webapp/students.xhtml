@@ -6,11 +6,13 @@
 <h:head>
     <h:outputStylesheet library="webjars" name="bootstrap/5.3.3/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-</h:head>
 
+    <f:loadBundle basename="messages" var="msg" />
+</h:head>
 
 <h:body>
     <div class="container mt-3">
+<<<<<<< HEAD
         <h2>Liste des étudiants</h2>
         <h:form>
         <h:dataTable value="#{studentBean.visibleStudents}" var="student" styleClass="table"
@@ -53,6 +55,69 @@
             <h:commandButton value="previous" action="#{studentBean.previousPage()}"></h:commandButton>
             <h:commandButton value="next" action="#{studentBean.nextPage()}"></h:commandButton>
            </h:form>
+=======
+        <h1>#{msg.title}</h1>
+        <h:form>
+            <h:selectOneMenu value="#{language.selectedLocale}" styleClass="menu" >
+                <f:selectItem itemValue="en" itemLabel="English" />
+                <f:selectItem itemValue="fr" itemLabel="Français" />
+                <f:ajax render="@form" listener="#{language.changeLocale}"  />
+            </h:selectOneMenu>
+
+
+            <h:dataTable value="#{studentBean.students}" var="student" styleClass="table"
+                         headerClass="table-dark" rowClasses="table-secondary, table-light">
+
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    #{student.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">#{msg.student_name}</f:facet>
+                    <h:inputText value="#{student.nom}" rendered="#{student.editMode}" />
+                    <h:outputText value="#{student.nom}" rendered="#{not student.editMode}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">#{msg.student_surname}</f:facet>
+                    <h:inputText value="#{student.prenom}" rendered="#{student.editMode}" />
+                    <h:outputText value="#{student.prenom}" rendered="#{not student.editMode}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">#{msg.student_email}</f:facet>
+                    <h:inputText value="#{student.email}" rendered="#{student.editMode}" />
+                    <h:outputText value="#{student.email}" rendered="#{not student.editMode}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <div class="btn-group">
+                        <h:commandButton type="submit" class="btn btn-primary" value="#{msg.student_edit}"
+                                         action="#{studentBean.toggleEditMode(student)}">
+                            <f:setPropertyActionListener target="#{studentBean.selectedStudent}" value="#{student}" />
+                        </h:commandButton>
+                    </div>
+                    <div class="btn-group">
+                        <h:commandButton type="submit" class="btn btn-success" value="#{msg.student_saveChanges}"
+                                         action="#{studentBean.saveChanges}" rendered="#{student.editMode}">
+                        </h:commandButton>
+                    </div>
+                    <div class="btn-group">
+                        <h:commandButton type="submit" class="btn btn-danger" value="#{msg.student_delete}"
+                                         disabled="#{student.editMode}">
+                        </h:commandButton>
+                    </div>
+                </h:column>
+
+            </h:dataTable>
+
+            <div class="btn-group">
+                <h:commandButton type="submit" class="btn btn-success" value="#{msg.student_addStudent}"
+                                 disabled="#{student.editMode}">
+                </h:commandButton>
+            </div>
+
+        </h:form>
+>>>>>>> chaymae1
     </div>
 </h:body>
 </html>
